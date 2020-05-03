@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Turbo.Plugins.User.BuffWatcher.Painter
+namespace Turbo.Plugins.User.Painters
 {
     public class CentreSlotPainter : ITransparentCollection
     {
@@ -16,13 +16,14 @@ namespace Turbo.Plugins.User.BuffWatcher.Painter
 
         public void Paint(IBuff buff)
         {
-            if (buff == null) return;
+            if ((buff == null) || (buff.IconCounts[0] <= 0)) return;
             var cooldown = buff.TimeLeftSeconds[1].ToString("F");
             var textLayout = _centreFont.GetTextLayout(cooldown);
             var x = (_hud.Window.Size.Width - (float)Math.Ceiling(textLayout.Metrics.Width)) / 2;
             var y = (_hud.Window.Size.Height - textLayout.Metrics.Height) / 2;
 
-            _centreFont.DrawText(buff.TimeLeftSeconds[1].ToString("F"), x, y);
+            //_centreFont.DrawText(buff.TimeLeftSeconds[1].ToString("F"), x, y);
+            _centreFont.DrawText(buff.TimeLeftSeconds.Length.ToString(), x, y);
         }
 
         public IEnumerable<ITransparent> GetTransparents()

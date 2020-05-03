@@ -1,11 +1,5 @@
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-// *.txt files are not loaded automatically by TurboHUD
-// you have to change this file's extension to .cs to enable it
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 using Turbo.Plugins.Default;
-using System.Linq;
-using Turbo.Plugins.User.BuffWatcher.Painter;
+using Turbo.Plugins.User.Painters;
 
 namespace Turbo.Plugins.User.BuffWatcher
 {
