@@ -1,0 +1,37 @@
+using System.Linq;
+using Turbo.Plugins.Default;
+using Turbo.Plugins.User.Painters;
+
+namespace Turbo.Plugins.User.SocketServer
+{
+
+    public class SocketServerPlugin : BasePlugin, IInGameTopPainter
+    {
+        private ScreenDebugPainter _debugPainter;
+
+        public SocketServerPlugin()
+        {
+            Enabled = true;
+        }
+
+        public override void Load(IController hud)
+        {
+            base.Load(hud);
+            _debugPainter = new ScreenDebugPainter(hud);
+            //Hud.TextLog.Log("hello.txt", "abc", false, false);
+
+        }
+
+        public void PaintTopInGame(ClipState clipState)
+        {
+            if (clipState != ClipState.AfterClip) return;
+            var player = Hud.Game.Me;
+            var skills = player.Powers.CurrentSkills.Select(x => x.Key.ToString()).Aggregate((x, y) => $"{x}, {y}");
+            _debugPainter.Paint(skills);
+
+            var test = new RectangleShapePainter(Hud);
+            var brush = Hud.Render.CreateBrush(255, 255, 0, 0, 0);
+            test.Paint(100, 100, 2000, brush, null);
+        }
+    }
+}

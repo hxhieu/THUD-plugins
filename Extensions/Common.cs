@@ -17,4 +17,14 @@ namespace Turbo.Plugins.User.Extensions
             y = Y;
         }
     }
+
+    public static class SkillExtensions
+    {
+        public static bool CanUse(this IPlayerSkill skill)
+        {
+            return !skill.IsOnCooldown
+                && skill.ResourceCost <= skill.Player.Stats.ResourceCurPri
+            ;
+        }
+    }
 }
